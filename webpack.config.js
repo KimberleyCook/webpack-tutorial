@@ -2,8 +2,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/app/index.html',
-  filename: 'index.html',
-  inject: 'body'
+  filename: 'index.html'
 });
 
 module.exports = {
@@ -14,12 +13,13 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "babel"}
+        include:  __dirname + '/app',
+        loader: 'babel?presets[]=es2015',
+      }
     ]
   },
   output: {
-    filename: "index_bundle.js",
+    filename: 'index_bundle.js',
     path: __dirname + '/dist'
   },
   plugins: [HTMLWebpackPluginConfig]
